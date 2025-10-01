@@ -38,13 +38,14 @@ namespace Windows
             }
             else
             {
+                attemt++;
                 if(attemt >= 3) 
                 {
                     MessageBox.Show("Вы заблокированы на 1 минуту");
                 }
                 else
                 {
-                    MessageBox.Show("Попрбуйте еще раз");
+                    MessageBox.Show("Попрбуйте вести пароль еще раз");
 
                 }
             }
@@ -52,6 +53,8 @@ namespace Windows
 
 
         }
+
+        
     }
     
 }
