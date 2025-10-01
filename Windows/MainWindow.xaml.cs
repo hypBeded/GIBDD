@@ -8,7 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Microsoft.Data.Sqlite;
+using Microsoft.Win32;
 namespace Windows
 {
     /// <summary>
@@ -20,41 +21,42 @@ namespace Windows
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
-  
+
 
         private void LogIn(object sender, RoutedEventArgs e)
         {
-            string LogIn = LogIN.Text;
-            string PassWord = PassWorD.Text;
+            using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
+            {
+                conect.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.Connection = conect;
+                //command.CommandText = "INSERT INTO Inspector (Login, Password) VALUES ('Inspector', 'Inspector')";
+                //command.ExecuteNonQuery();
 
-            if( LogIn == "inspector" &&  PassWord == "inspector")
-            {
-                mainmenu mainmenu = new mainmenu();
-                mainmenu.Show();
-                this.Close();
-            }
-            else
-            {
-                attemt++;
-                if(attemt >= 3) 
+                string LogIn = LogIN.Text;
+                string PassWord = PassWorD.Text;
+
+                if (LogIn == "inspector" && PassWord == "inspector")
                 {
-                    MessageBox.Show("Вы заблокированы на 1 минуту");
+                    mainmenu mainmenu = new mainmenu();
+                    mainmenu.Show();
+                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Попрбуйте вести пароль еще раз");
-
+                    attemt++;
+                    if (attemt >= 3)
+                    {
+                        MessageBox.Show("Вы заблокированы на 1 минуту");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Попрбуйте вести пароль еще раз");
+                    }
                 }
             }
-
-
-
         }
-
-        
     }
-    
 }
