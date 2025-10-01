@@ -31,6 +31,7 @@ namespace Windows
                 command.Connection = conect;
                 //command.CommandText = "INSERT INTO Inspector (Login, Password) VALUES ('Inspector', 'Inspector')";
                 //command.ExecuteNonQuery();
+                //привет
             }
         }      
     }
