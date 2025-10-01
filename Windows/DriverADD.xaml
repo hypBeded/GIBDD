@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Windows"
         mc:Ignorable="d"
         Title="DriverADD" Height="450" Width="800" ResizeMode="NoResize">
-    <Grid HorizontalAlignment="Left" Height="450" Width="800" Margin="0,0,0,0">
+    <Grid HorizontalAlignment="Center" Height="450" Width="800" Margin="0,0,0,0">
         <Button  Content="Зарегистрировать" Margin="329,358,329,41"/>
         <TextBox TextWrapping="Wrap" Margin="294,77,294,324" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
