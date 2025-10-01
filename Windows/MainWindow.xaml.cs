@@ -8,7 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Microsoft.Data.Sqlite;
+using Microsoft.Win32;
 namespace Windows
 {
     /// <summary>
@@ -20,5 +21,17 @@ namespace Windows
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
+            {
+                conect.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.Connection = conect;
+                //command.CommandText = "INSERT INTO Inspector (Login, Password) VALUES ('Inspector', 'Inspector')";
+                //command.ExecuteNonQuery();
+            }
+        }      
     }
 }
