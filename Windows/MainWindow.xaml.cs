@@ -22,7 +22,7 @@ namespace Windows
         {
             InitializeComponent();
         }
-
+        
 
 
         private void LogIn(object sender, RoutedEventArgs e)
@@ -30,32 +30,82 @@ namespace Windows
             using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
             {
                 conect.Open();
-                SqliteCommand command = new SqliteCommand();
-                command.Connection = conect;
-                //command.CommandText = "INSERT INTO Inspector (Login, Password) VALUES ('Inspector', 'Inspector')";
-                //command.ExecuteNonQuery();
 
-                string LogIn = LogIN.Text;
-                string PassWord = PassWorD.Text;
+                string query = "select login, password from Inspector where login = @login";
 
-                if (LogIn == "inspector" && PassWord == "inspector")
+                using (var command = new SqliteCommand(query, conect))
                 {
-                    mainmenu mainmenu = new mainmenu();
-                    mainmenu.Show();
-                    this.Close();
-                }
-                else
-                {
-                    attemt++;
-                    if (attemt >= 3)
+                    command.Parameters.AddWithValue("@login", "Inspector");
+                    using (SqliteDataReader reader = command.ExecuteReader())
                     {
-                        MessageBox.Show("Вы заблокированы на 1 минуту");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Попрбуйте вести пароль еще раз");
+                        if (reader.Read())
+                        {
+                            string username = reader["login"].ToString();
+                            string password = reader["password"].ToString();
+
+                            string LogIn = LogIN.Text;
+                            string PassWord = PassWorD.Text;
+
+
+                            if (username == LogIn &&  password == PassWord )
+                            {
+                                mainmenu mainmenu = new mainmenu();
+                                mainmenu.Show();
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Неверный логин или пароль");
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Подключение к бд отсутствует");
+                        }
                     }
                 }
+
+               
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                //string LogIn = LogIN.Text;
+                //string PassWord = PassWorD.Text;
+
+                //if (LogIn == "inspector" && PassWord == "inspector")
+                //{
+                //    mainmenu mainmenu = new mainmenu();
+                //    mainmenu.Show();
+                //    this.Close();
+                //}
+                //else
+                //{
+                //    attemt++;
+                //    if (attemt >= 3)
+                //    {
+                //        MessageBox.Show("Вы заблокированы на 1 минуту");
+                //    }
+                //    else
+                //    {
+                //        MessageBox.Show("Попрбуйте вести пароль еще раз");
+                //    }
+                //}
             }
         }
     }
