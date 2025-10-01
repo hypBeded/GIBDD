@@ -1,0 +1,14 @@
+﻿<Window x:Class="Windows.DataImport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Windows"
+        mc:Ignorable="d"
+        Title="DataImport" Height="450" Width="800">
+    <Grid>
+        <Label Content="Импорт файлов" Margin="316,12,316,351" FontSize="20"/>
+        <TextBox TextWrapping="Wrap" Text="TextBox" Margin="314,102,316,279"/>
+        <Button Content="Добавить" Margin="328,195,328,205" Click="Button_Click"/>
+    </Grid>
+</Window>
