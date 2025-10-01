@@ -8,7 +8,7 @@
         Title="mainmenu" Height="450" Width="800" ResizeMode="NoResize">
     <Grid HorizontalAlignment="Center" Height="450" Width="800" Margin="0,0,0,0">
         <Button Content="Регистрация водителя" Margin="291,113,291,280" FontSize="16"/>
-        <Button Content="Импорт файлов" Margin="291,182,291,211" FontSize="16"/>
+        <Button Content="Импорт файлов" Margin="291,182,291,219" FontSize="16"/>
         <Button Content="Назад" Margin="321,248,322,143" FontSize="16"/>
 
     </Grid>

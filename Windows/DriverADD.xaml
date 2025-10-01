@@ -8,7 +8,7 @@
         Title="DriverADD" Height="450" Width="800" ResizeMode="NoResize">
     <Grid HorizontalAlignment="Center" Height="450" Width="800" Margin="0,0,0,0">
         <Button  Content="Зарегистрировать" Margin="329,358,329,41"/>
-        <TextBox TextWrapping="Wrap" Margin="294,77,294,324" RenderTransformOrigin="0.5,0.5">
+        <TextBox TextWrapping="Wrap" Margin="294,77,294,332" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -18,7 +18,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,123,294,278" RenderTransformOrigin="0.5,0.5">
+        <TextBox TextWrapping="Wrap" Margin="294,134,294,278" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -28,7 +28,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,167,294,234" RenderTransformOrigin="0.5,0.5">
+        <TextBox TextWrapping="Wrap" Margin="294,182,294,233" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -38,7 +38,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,213,294,188" RenderTransformOrigin="0.5,0.5">
+        <TextBox TextWrapping="Wrap" Margin="294,230,294,188" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -48,7 +48,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,258,294,143" RenderTransformOrigin="0.5,0.5">
+        <TextBox TextWrapping="Wrap" Margin="294,270,294,143" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -58,7 +58,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,303,294,98" RenderTransformOrigin="0.5,0.5">
+        <TextBox TextWrapping="Wrap" Margin="294,317,294,98" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -69,12 +69,12 @@
             </TextBox.RenderTransform>
         </TextBox>
         <Label Content="Регистрация водителя" Margin="282,10,282,373" FontSize="22"/>
-        <Label Content="ФИО" Margin="204,78,0,317" HorizontalAlignment="Left"/>
-        <Label Content="Паспортные данные&#xD;&#xA;" Margin="161,122,0,273" HorizontalAlignment="Left"/>
-        <Label Content="Заявление" Margin="188,166,0,229" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="ПТС" Margin="206,205,0,190" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="СТС" Margin="207,254,0,141" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="Договор купли-продажи&#xD;&#xA;" Margin="148,298,0,97" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="ФИО" Margin="202,75,0,320" HorizontalAlignment="Left"/>
+        <Label Content="Паспортные данные&#xD;&#xA;" Margin="161,130,0,265" HorizontalAlignment="Left"/>
+        <Label Content="Заявление" Margin="190,184,0,211" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="ПТС" Margin="209,231,0,164" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="СТС" Margin="208,273,0,122" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Договор купли-продажи&#xD;&#xA;" Margin="144,316,0,79" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
 
 
 
