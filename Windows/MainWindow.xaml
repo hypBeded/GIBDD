@@ -9,12 +9,12 @@
         Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
 
     <Grid HorizontalAlignment="Center" Height="450" Width="800" Margin="0,0,0,0">
-        <Button Content="Войти" Margin="263,273,271,132" FontSize="18"/>
-    <Label Content="Авторизация" Margin="312,50,312,332" FontSize="24" Grid.Column="1"/>
-    <TextBox TextWrapping="Wrap" Margin="271,126,217,288"  Text="Почта" FontSize="16"/>
-    <TextBox TextWrapping="Wrap" Text="Пароль" Margin="271,191,217,218" FontSize="16"/>
-    <Label Content="Логин" Margin="165,128,534,268" FontSize="16" Grid.Column="1"/>
-    <Label Content="Пароль" Margin="165,193,534,205" FontSize="16" Grid.Column="1"/>
+        <Button Content="Войти" Margin="301,270,233,135" FontSize="18" Click="LogIn" Height="40" Width="120"  HorizontalAlignment="Center"/>
+        <Label Content="Авторизация" Margin="345,51,279,331" FontSize="24" HorizontalAlignment="Center" />
+        <TextBox x:Name="LogIN" TextWrapping="Wrap" Margin="271,126,217,288"  Text="Логин" FontSize="16"/>
+        <TextBox x:Name="PassWorD" TextWrapping="Wrap" Text="Пароль" Margin="271,191,217,218" FontSize="16"/>
+        <Label Content="Логин" Margin="165,128,534,268" FontSize="16" Grid.Column="1"/>
+        <Label Content="Пароль" Margin="165,193,534,205" FontSize="16" Grid.Column="1" />
 
     </Grid>
 </Window>

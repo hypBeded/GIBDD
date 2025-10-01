@@ -16,9 +16,42 @@ namespace Windows
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int attemt = 0;
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+  
+
+        private void LogIn(object sender, RoutedEventArgs e)
+        {
+            string LogIn = LogIN.Text;
+            string PassWord = PassWorD.Text;
+
+            if( LogIn == "inspector" &&  PassWord == "inspector")
+            {
+                mainmenu mainmenu = new mainmenu();
+                mainmenu.Show();
+                this.Close();
+            }
+            else
+            {
+                if(attemt >= 3) 
+                {
+                    MessageBox.Show("Вы заблокированы на 1 минуту");
+                }
+                else
+                {
+                    MessageBox.Show("Попрбуйте еще раз");
+
+                }
+            }
+
+
+
         }
     }
+    
 }
