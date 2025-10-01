@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Windows"
         mc:Ignorable="d"
-        Title="DataImport" Height="450" Width="800">
-    <Grid>
+        Title="DataImport" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid HorizontalAlignment="Center" Height="450" Width="800" Margin="0,0,0,0">
         <Label Content="Импорт файлов" Margin="316,12,316,351" FontSize="20"/>
         <TextBox TextWrapping="Wrap" Text="TextBox" Margin="314,102,316,279"/>
         <Button Content="Добавить" Margin="328,195,328,205" Click="Button_Click"/>
