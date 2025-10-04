@@ -65,48 +65,27 @@ namespace Windows
                         }
                     }
                 }
-
-               
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                //string LogIn = LogIN.Text;
-                //string PassWord = PassWorD.Text;
-
-                //if (LogIn == "inspector" && PassWord == "inspector")
-                //{
-                //    mainmenu mainmenu = new mainmenu();
-                //    mainmenu.Show();
-                //    this.Close();
-                //}
-                //else
-                //{
-                //    attemt++;
-                //    if (attemt >= 3)
-                //    {
-                //        MessageBox.Show("Вы заблокированы на 1 минуту");
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("Попрбуйте вести пароль еще раз");
-                //    }
-                //}
             }
+        }
+
+        private void LogIN_GotFocus(object sender, RoutedEventArgs e)
+        {
+            LogIN.Text = " ";
+        }
+
+        private void LogIN_LostFocus(object sender, RoutedEventArgs e)
+        {
+            LogIN.Text = "Логин";
+        }
+
+        private void PassWorD_LostFocus(object sender, RoutedEventArgs e)
+        {
+            PassWorD.Text = "Пароль";
+        }
+
+        private void PassWorD_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PassWorD.Text = " ";
         }
     }
 }
