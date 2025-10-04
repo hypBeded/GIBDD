@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Microsoft.Data.Sqlite;
 namespace Windows
 {
     /// <summary>
@@ -22,6 +22,18 @@ namespace Windows
         public DriverADD()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using(var conect = new SqliteConnection("Data Source=GIBDD.db"))
+            {
+                conect.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.Connection = conect;
+                command.CommandText = "CREATE TABLE Drivers(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Full_name TEXT NOT NULL, Pasport_Date TEXT NOT NULL, Statement TEXT NOT NULL, PTS TEXT NOT NULL, STS TEXT NOT NULL, Contract TEXT NOT NULL)";
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

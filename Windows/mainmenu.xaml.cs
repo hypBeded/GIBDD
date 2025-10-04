@@ -23,5 +23,12 @@ namespace Windows
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DriverADD reg = new DriverADD();
+            reg.Show();
+            this.Hide();
+        }
     }
 }
