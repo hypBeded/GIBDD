@@ -55,6 +55,7 @@ namespace Windows
                             }
                             else
                             {
+                                attemt++;
                                 MessageBox.Show("Неверный логин или пароль");
 
                             }
@@ -70,22 +71,22 @@ namespace Windows
 
         private void LogIN_GotFocus(object sender, RoutedEventArgs e)
         {
-            LogIN.Text = " ";
+         
         }
 
         private void LogIN_LostFocus(object sender, RoutedEventArgs e)
         {
-            LogIN.Text = "Логин";
+            
         }
 
         private void PassWorD_LostFocus(object sender, RoutedEventArgs e)
         {
-            PassWorD.Text = "Пароль";
+            
         }
 
         private void PassWorD_GotFocus(object sender, RoutedEventArgs e)
         {
-            PassWorD.Text = " ";
+            
         }
     }
 }
