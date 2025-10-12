@@ -71,22 +71,36 @@ namespace Windows
 
         private void LogIN_GotFocus(object sender, RoutedEventArgs e)
         {
-         
+         if(LogIN.Text == "Логин")
+            {
+                LogIN.Text = string.Empty;
+            }
+
         }
 
         private void LogIN_LostFocus(object sender, RoutedEventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(LogIN.Text))
+            {
+                LogIN.Text = "Логин";
+            }
         }
 
         private void PassWorD_LostFocus(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(PassWorD.Text))
+            {
+                LogIN.Text = "Пароль";
+            }
             
         }
 
         private void PassWorD_GotFocus(object sender, RoutedEventArgs e)
         {
-            
+            if (PassWorD.Text == "Пароль")
+            {
+                PassWorD.Text = string.Empty;
+            }
         }
     }
 }
