@@ -6,9 +6,98 @@
         xmlns:local="clr-namespace:Windows"
         mc:Ignorable="d"
         Title="DriverADD" Height="450" Width="800" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"
+                                CornerRadius="15"
+                                Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid HorizontalAlignment="Center" Height="450" Width="800" Margin="0,0,0,0">
-        <Button  Content="Зарегистрировать" Margin="329,358,329,41"/>
-        <TextBox TextWrapping="Wrap" Margin="294,77,294,341" RenderTransformOrigin="0.5,0.5">
+        <Button Style="{DynamicResource ButtonStyle1}"  Content="Зарегистрировать" Margin="329,358,329,41"/>
+        <TextBox TextWrapping="Wrap" Margin="194,68,394,350" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.212"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.097"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox TextWrapping="Wrap" Margin="194,114,394,298" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.234"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.214"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox TextWrapping="Wrap" Margin="194,165,394,250" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.109"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.095"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox TextWrapping="Wrap" Margin="194,215,394,203" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -18,7 +107,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,134,294,278" RenderTransformOrigin="0.5,0.5">
+        <TextBox TextWrapping="Wrap" Margin="194,261,394,152" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -28,37 +117,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,182,294,233" RenderTransformOrigin="0.5,0.5">
-            <TextBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="1.052"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.45"/>
-                </TransformGroup>
-            </TextBox.RenderTransform>
-        </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,230,294,188" RenderTransformOrigin="0.5,0.5">
-            <TextBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="1.052"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.45"/>
-                </TransformGroup>
-            </TextBox.RenderTransform>
-        </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,270,294,143" RenderTransformOrigin="0.5,0.5">
-            <TextBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="1.052"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.45"/>
-                </TransformGroup>
-            </TextBox.RenderTransform>
-        </TextBox>
-        <TextBox TextWrapping="Wrap" Margin="294,317,294,98" RenderTransformOrigin="0.5,0.5">
+        <TextBox TextWrapping="Wrap" Margin="194,310,394,105" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -69,12 +128,49 @@
             </TextBox.RenderTransform>
         </TextBox>
         <Label Content="Регистрация водителя" Margin="282,10,282,373" FontSize="22"/>
-        <Label Content="ФИО" Margin="202,75,0,320" HorizontalAlignment="Left"/>
-        <Label Content="Паспортные данные&#xD;&#xA;" Margin="161,130,0,265" HorizontalAlignment="Left"/>
-        <Label Content="Заявление" Margin="190,184,0,211" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="ПТС" Margin="209,231,0,164" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="СТС" Margin="208,273,0,122" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="Договор купли-продажи&#xD;&#xA;" Margin="144,316,0,79" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Индентификатор" Margin="70,70,0,325" HorizontalAlignment="Left"/>
+        <Label Content="ФИО" Margin="103,114,0,281" HorizontalAlignment="Left"/>
+        <Label Content="Паспортные данные" Margin="60,164,0,231" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Мобильный телефон" Margin="58,215,0,180" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Email" Margin="102,254,0,141" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Замечания" Margin="87,309,0,86" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <TextBox TextWrapping="Wrap" Margin="547,70,42,352" TextChanged="TextBox_TextChanged"/>
+        <Label Content="Адрес &#xD;&#xA;регистрации" Margin="458,62,226,325"/>
+        <TextBox TextWrapping="Wrap" Margin="547,114,42,300"/>
+        <Label Content="Адрес &#xD;&#xA;проживания" Margin="458,109,207,295"/>
+        <TextBox TextWrapping="Wrap" Margin="546,165,42,250" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.109"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.095"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label Content="Место&#xD;&#xA;работы" Margin="458,164,239,225"/>
+        <TextBox TextWrapping="Wrap" Margin="546,215,42,203" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.052"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.45"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label Content="Должность" Margin="458,215,239,180"/>
+        <TextBox TextWrapping="Wrap" Margin="616,264,105,127" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.052"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.45"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label Content="Фото (png)" Margin="458,270,252,130" RenderTransformOrigin="0.801,0.441"/>
 
 
 
