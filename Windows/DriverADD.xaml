@@ -130,9 +130,9 @@
         <Label Content="Регистрация водителя" Margin="282,10,282,373" FontSize="22"/>
         <Label Content="Индентификатор" Margin="70,70,0,325" HorizontalAlignment="Left"/>
         <Label Content="ФИО" Margin="103,114,0,281" HorizontalAlignment="Left"/>
-        <Label Content="Паспортные данные" Margin="60,164,0,231" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="Мобильный телефон" Margin="58,215,0,180" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="Email" Margin="102,254,0,141" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Паспортные данные" Margin="35,164,0,256" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Мобильный телефон" Margin="32,215,0,208" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Email" Margin="119,266,0,155" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Замечания" Margin="87,309,0,86" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <TextBox TextWrapping="Wrap" Margin="547,70,42,352" TextChanged="TextBox_TextChanged"/>
         <Label Content="Адрес &#xD;&#xA;регистрации" Margin="458,62,226,325"/>
@@ -162,7 +162,7 @@
         <Label Content="Должность" Margin="458,215,239,180"/>
         <Label Content="Фото (png)" Margin="458,270,252,130" RenderTransformOrigin="0.801,0.441"/>
         <Border   HorizontalAlignment="Left" Height="100" Margin="593,270,0,0" VerticalAlignment="Top" Width="100">
-            <Image Margin="0,0,-1,-1" Source="/Image2.png" Stretch="Fill"/>
+            <Image Margin="0,0,-1,-1" Source="/Image2.png" Stretch="Fill" MouseDown="DriverImage_Add"/>
         </Border>
 
 
