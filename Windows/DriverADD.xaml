@@ -67,33 +67,90 @@
     </Window.Resources>
     <Grid HorizontalAlignment="Center" Height="450" Width="800" Margin="0,0,0,0">
         <Button Style="{DynamicResource ButtonStyle1}"  Content="Зарегистрировать" Margin="329,358,329,41" Click="Button_Click"/>
-        <TextBox x:Name="FullName" TextWrapping="Wrap" Margin="194,70,394,342" RenderTransformOrigin="0.5,0.5"/>
-
+        <TextBox x:Name="FullName" TextWrapping="Wrap" Margin="194,70,394,342" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.234"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.214"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
         <TextBox x:Name="PasportInfo" TextWrapping="Wrap" Margin="194,121,394,294" RenderTransformOrigin="0.5,0.5">
-        <TextBox x:Name="PhoneNumber" TextWrapping="Wrap" Margin="194,171,394,247" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="Email" TextWrapping="Wrap" Margin="194,217,394,196" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="remark" TextWrapping="Wrap" Margin="194,266,394,149" RenderTransformOrigin="0.5,0.5"/>
-
-            <Label Content="Регистрация водителя" Margin="282,10,282,373" FontSize="22"/>
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.109"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.095"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox x:Name="PhoneNumber" TextWrapping="Wrap" Margin="194,171,394,247" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.052"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.45"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox x:Name="Email" TextWrapping="Wrap" Margin="194,217,394,196" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.052"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.45"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox x:Name="Zamechanie" TextWrapping="Wrap" Margin="194,266,394,149" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.052"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.45"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label Content="Регистрация водителя" Margin="282,10,282,373" FontSize="22"/>
         <Label Content="ФИО" Margin="103,70,0,325" HorizontalAlignment="Left"/>
         <Label Content="Паспортные данные" Margin="35,120,0,300" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Мобильный телефон" Margin="32,171,0,252" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Email" Margin="119,222,0,199" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Замечания" Margin="87,265,0,130" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <TextBox x:Name="RegAddress" TextWrapping="Wrap" Margin="547,70,42,352" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="RegAdress" TextWrapping="Wrap" Margin="547,70,42,352" TextChanged="TextBox_TextChanged"/>
         <Label Content="Адрес &#xD;&#xA;регистрации" Margin="458,62,226,325"/>
-        <TextBox x:Name="ResidentialAddress" TextWrapping="Wrap" Margin="547,114,42,300"/>
+        <TextBox x:Name="ResAdress" TextWrapping="Wrap" Margin="547,114,42,300"/>
         <Label Content="Адрес &#xD;&#xA;проживания" Margin="458,109,207,295"/>
-        <TextBox x:Name="PlaceOfWork" TextWrapping="Wrap" Margin="546,165,42,250" RenderTransformOrigin="0.5,0.5"/>
-
+        <TextBox x:Name="PlaceOfWork" TextWrapping="Wrap" Margin="546,165,42,250" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.109"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.095"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
         <Label Content="Место&#xD;&#xA;работы" Margin="458,164,239,225"/>
-        <TextBox x:Name="Post" TextWrapping="Wrap" Margin="546,215,42,203" RenderTransformOrigin="0.5,0.5"/>
+        <TextBox x:Name="Post" TextWrapping="Wrap" Margin="546,215,42,203" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.052"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.45"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
         <Label Content="Должность" Margin="458,215,239,180"/>
         <Label Content="Фото (png)" Margin="458,270,252,130" RenderTransformOrigin="0.801,0.441"/>
-      
-            
-            
-            <Border   HorizontalAlignment="Left" Height="100" Margin="593,270,0,0" VerticalAlignment="Top" Width="100">
+        <Border   HorizontalAlignment="Left" Height="100" Margin="593,270,0,0" VerticalAlignment="Top" Width="100">
             <Image Margin="0,0,-1,-1" Source="/Image2.png" Stretch="Fill" MouseDown="DriverImage_Add"/>
         </Border>
 
