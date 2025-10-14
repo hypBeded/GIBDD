@@ -28,7 +28,7 @@ namespace Windows
         {
             DriverADD driverADD = new DriverADD();
             driverADD.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

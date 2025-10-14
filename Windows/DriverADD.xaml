@@ -123,7 +123,7 @@
         <Label Content="Мобильный телефон" Margin="32,171,0,252" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Email" Margin="119,222,0,199" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Замечания" Margin="87,265,0,130" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <TextBox x:Name="RegAdress" TextWrapping="Wrap" Margin="547,70,42,352" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="RegAdress" TextWrapping="Wrap" Margin="547,70,42,352" />
         <Label Content="Адрес &#xD;&#xA;регистрации" Margin="458,62,226,325"/>
         <TextBox x:Name="ResAdress" TextWrapping="Wrap" Margin="547,114,42,300"/>
         <Label Content="Адрес &#xD;&#xA;проживания" Margin="458,109,207,295"/>
@@ -150,8 +150,8 @@
         </TextBox>
         <Label Content="Должность" Margin="458,215,239,180"/>
         <Label Content="Фото (png)" Margin="458,270,252,130" RenderTransformOrigin="0.801,0.441"/>
-        <Border   HorizontalAlignment="Left" Height="100" Margin="593,270,0,0" VerticalAlignment="Top" Width="100">
-            <Image Margin="0,0,-1,-1" Source="/Image2.png" Stretch="Fill" MouseDown="DriverImage_Add"/>
+        <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="593,270,0,0" VerticalAlignment="Top" Width="100">
+            <Image x:Name="DriverImage" Margin="0,0,-1,-1" Source="/Image2.png" Stretch="Fill" MouseDown="DriverImage_Add"/>
         </Border>
 
 

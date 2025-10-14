@@ -1,7 +1,9 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +28,6 @@ namespace Windows
         {
             InitializeComponent();
         }
-       
 
 
 
@@ -50,10 +51,8 @@ namespace Windows
 
 
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        byte[] imageBytes;
 
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -66,7 +65,7 @@ namespace Windows
             string ResA = ResAdress.Text; //адрес проживание
             string POW = PlaceOfWork.Text; //Место работы
             string post = Post.Text; //Должность
-            byte? image = null;
+            byte[] image = imageBytes;
 
 
 
@@ -79,24 +78,31 @@ namespace Windows
 
             using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
             {
-                conect.Open();
-                var command = conect.CreateCommand();
-                command.CommandText = "Insert INTO Drivers" +
-                    "(Full_Name, Pasporta_data,Phone_number,Email,Remark,Adres_regitr,Adres_residinatia,Workplace,Post,Photo) " +
-                    "values  (@Full_Name,@Pasporta_data,@Phone_number,@Email,@Remark,@Adres_regitr,@Adres_residinatia,@Workplace,@Post,@Photo";
+                try
+                {
+                    conect.Open();
+                    var command = conect.CreateCommand();
+                    command.CommandText = "Insert INTO Drivers" +
+                        "(Full_Name, Pasporta_data,Phone_number,Email,Remark,Adres_regitr,Adres_residinatia,Workplace,Post,Photo) " +
+                        "values  (@Full_Name,@Pasporta_data,@Phone_number,@Email,@Remark,@Adres_regitr,@Adres_residinatia,@Workplace,@Post,@Photo";
 
-                command.Parameters.AddWithValue("@Full_Name", FN );
-                command.Parameters.AddWithValue("@Pasporta_data",PI );
-                command.Parameters.AddWithValue("@Phone_number",PN );
-                command.Parameters.AddWithValue("@Email",mail );
-                command.Parameters.AddWithValue("@Remark", remark);
-                command.Parameters.AddWithValue("@Adres_regitr",RegA );
-                command.Parameters.AddWithValue("@Adres_residinatia",ResA);
-                command.Parameters.AddWithValue("@Workplace",POW );
-                command.Parameters.AddWithValue("@Post", post);
-                command.Parameters.AddWithValue("@Photo", image);
+                    command.Parameters.AddWithValue("@Full_Name", FN);
+                    command.Parameters.AddWithValue("@Pasporta_data", PI);
+                    command.Parameters.AddWithValue("@Phone_number", PN);
+                    command.Parameters.AddWithValue("@Email", mail);
+                    command.Parameters.AddWithValue("@Remark", remark);
+                    command.Parameters.AddWithValue("@Adres_regitr", RegA);
+                    command.Parameters.AddWithValue("@Adres_residinatia", ResA);
+                    command.Parameters.AddWithValue("@Workplace", POW);
+                    command.Parameters.AddWithValue("@Post", post);
+                    command.Parameters.AddWithValue("@Photo", image);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Убедитесь что вы заполнили все");
+                }
             }
         }
 
@@ -117,19 +123,31 @@ namespace Windows
        
         private void DriverImage_Add(object sender, MouseButtonEventArgs e)
         {
-            
-           /* var openFileDialog = new Microsoft.Win32.OpenFileDialog
+
+            // Создаем экземпляр OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
+                Filter = "Image Files|*.jpg;*.png;" // Фильтр для изображений
             };
 
             if (openFileDialog.ShowDialog() == true)
             {
-                byte imageByte;
-                // Преобразуем изображение в массив байтов
-                imageByte = File.ReadAllBytes(openFileDialog.FileName);
+                string filePath = openFileDialog.FileName;
+                imageBytes = File.ReadAllBytes(filePath);
+
+                using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.StreamSource = stream;
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    bitmap.Freeze(); // Замораживаем изображение для использования в UI
+                    DriverImage.Source = bitmap; // Заменяем текущее изображение
+                }
+
                 MessageBox.Show("Изображение загружено!");
-            } */
+            }
         }
     }
 }
