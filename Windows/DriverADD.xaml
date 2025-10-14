@@ -66,7 +66,7 @@
         </Style>
     </Window.Resources>
     <Grid HorizontalAlignment="Center" Height="450" Width="800" Margin="0,0,0,0">
-        <Button Style="{DynamicResource ButtonStyle1}"  Content="Зарегистрировать" Margin="329,358,329,41"/>
+        <Button Style="{DynamicResource ButtonStyle1}"  Content="Зарегистрировать" Margin="329,358,329,41" Click="Button_Click"/>
         <TextBox TextWrapping="Wrap" Margin="194,68,394,350" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>

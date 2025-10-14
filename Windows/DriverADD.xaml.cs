@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,19 @@ namespace Windows
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
+            {
+                conect.Open();
+                SqliteCommand cmd = new SqliteCommand();
+                cmd.Connection = conect;
+                cmd.CommandText = "CREATE TABLE Drivers(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, Full_name TEXT NOT NULL, Pasporta_data INTEGER NOT NULL, Phone_number INTEGER NOT NULL, Email TEXT NOT NULL, Remark TEXT NOT NULL, Adres_regitr TEXT NOT NULL, Adres_residinatial TEXT NOT NULL, Workplace TEXT NOT NULL, Post TEXT NOT NULL, Photo BLOB NOT NULL)";
+                cmd.ExecuteNonQuery();
+            }
 
         }
     }
