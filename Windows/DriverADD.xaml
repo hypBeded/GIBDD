@@ -118,16 +118,14 @@
             </TextBox.RenderTransform>
         </TextBox>
         <Label Content="Регистрация водителя" Margin="282,10,282,373" FontSize="22"/>
-        <Label Content="ФИО" Margin="103,70,0,325" HorizontalAlignment="Left"/>
-        <Label Content="Паспортные данные" Margin="35,120,0,300" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="Мобильный телефон" Margin="32,171,0,252" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="Email" Margin="119,222,0,199" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="Замечания" Margin="87,265,0,130" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <TextBox x:Name="RegAdress" TextWrapping="Wrap" Margin="547,70,42,352" />
-        <Label Content="Адрес &#xD;&#xA;регистрации" Margin="458,62,226,325"/>
-        <TextBox x:Name="ResAdress" TextWrapping="Wrap" Margin="547,114,42,300"/>
-        <Label Content="Адрес &#xD;&#xA;проживания" Margin="458,109,207,295"/>
-        <TextBox x:Name="PlaceOfWork" TextWrapping="Wrap" Margin="546,165,42,250" RenderTransformOrigin="0.5,0.5">
+        <Label Content="ФИО" Margin="129,70,0,325" HorizontalAlignment="Left"/>
+        <Label Content="Паспортные данные" Margin="61,120,0,300" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Мобильный телефон" Margin="58,171,0,252" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Email" Margin="145,222,0,199" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Замечания" Margin="113,265,0,130" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Адрес &#xD;&#xA;регистрации" Margin="418,62,266,325"/>
+        <Label Content="Адрес &#xD;&#xA;проживания" Margin="418,109,247,295"/>
+        <TextBox x:Name="PlaceOfWork" TextWrapping="Wrap" Margin="506,165,82,250" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -137,8 +135,8 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <Label Content="Место&#xD;&#xA;работы" Margin="458,164,239,225"/>
-        <TextBox x:Name="Post" TextWrapping="Wrap" Margin="546,215,42,203" RenderTransformOrigin="0.5,0.5">
+        <Label Content="Место&#xD;&#xA;работы" Margin="418,164,279,225"/>
+        <TextBox x:Name="Post" TextWrapping="Wrap" Margin="506,215,82,203" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -148,11 +146,19 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <Label Content="Должность" Margin="458,215,239,180"/>
-        <Label Content="Фото (png)" Margin="458,270,252,130" RenderTransformOrigin="0.801,0.441"/>
-        <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="593,270,0,0" VerticalAlignment="Top" Width="100">
+        <Label Content="Должность" Margin="418,215,279,180"/>
+        <Label Content="Фото (png)" Margin="418,270,292,130" RenderTransformOrigin="0.801,0.441"/>
+        <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="553,270,0,0" VerticalAlignment="Top" Width="100">
             <Image x:Name="DriverImage" Margin="0,0,-1,-1" Source="/Image2.png" Stretch="Fill" MouseDown="DriverImage_Add"/>
         </Border>
+        <TextBox TextWrapping="Wrap" Margin="507,67,216,345" TextChanged="TextBox_TextChanged"/>
+        <Label Content="Название&#xD;&#xA;города" Margin="583,67,143,334" FontSize="10"/>
+        <TextBox TextWrapping="Wrap" Margin="641,67,82,345"/>
+        <Label Content="Точный&#xD;&#xA;адрес" Margin="724,67,0,334" FontSize="10"/>
+        <TextBox TextWrapping="Wrap" Margin="507,110,216,302" TextChanged="TextBox_TextChanged"/>
+        <Label Content="Название&#xA;города" Margin="583,110,143,290" FontSize="10"/>
+        <TextBox TextWrapping="Wrap" Margin="641,110,82,302"/>
+        <Label Content="Точный&#xA;адрес" Margin="724,110,0,290" FontSize="10"/>
 
 
 

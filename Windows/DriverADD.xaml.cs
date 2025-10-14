@@ -149,5 +149,15 @@ namespace Windows
                 MessageBox.Show("Изображение загружено!");
             }
         }
+
+        private void RegAdress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

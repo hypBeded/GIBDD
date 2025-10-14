@@ -1,0 +1,19 @@
+﻿<Window x:Class="Windows.Prosmotr_i_izmena_inspektorom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Windows"
+        mc:Ignorable="d"
+        Title="Prosmotr_i_izmena_inspektorom" Height="450" Width="800">
+    <Grid>
+        <Button Content="Сохранить" Margin="651,389,10,10" FontSize="18"/>
+        <Button Content="Не распознано" Margin="501,389,160,10" FontSize="18"/>
+        <Button Content="Назад" Margin="350,389,311,10" FontSize="18"/>
+        <Image Height="100" Width="100" Margin="464,119,236,215"/>
+        <Image Margin="307,31,307,217" Source="/load.gif" Stretch="Fill"/>
+        <TextBox TextWrapping="Wrap" Margin="307,232,307,152" FontSize="20"/>
+        <Label Content="Номер" Margin="203,232,498,139" FontSize="20"/>
+
+    </Grid>
+</Window>
