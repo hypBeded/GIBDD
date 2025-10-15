@@ -10,6 +10,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Data.Sqlite;
 using Microsoft.Win32;
+using System.Timers;
+
 namespace Windows
 {
     /// <summary>
@@ -17,56 +19,89 @@ namespace Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int attemt = 0;
+        private int _attempts = 0;
+        private bool _isBlocked = false;
+        private System.Timers.Timer _blockTimer;
         public MainWindow()
         {
             InitializeComponent();
+
+            if (!(Properties.Settings.Default.IsBlocked && Properties.Settings.Default.BlockedUntil > DateTime.Now))
+            {
+                Properties.Settings.Default.IsBlocked = false;
+            }
+            
+            _blockTimer = new System.Timers.Timer(60000); 
+            _blockTimer.Elapsed += OnBlockTimerElapsed;
+            _blockTimer.AutoReset = false;
         }
-        
+
+        private void OnBlockTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            _blockTimer.Stop();
+            _isBlocked = false;
+            _attempts = 0; 
+            Dispatcher.Invoke(() => MessageBox.Show("Вы разблокированы"));
+        }
 
 
         private void LogIn(object sender, RoutedEventArgs e)
         {
-            using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
+            if (Properties.Settings.Default.IsBlocked)
             {
-                conect.Open();
+                MessageBox.Show($"Вы заблокированы. Пожалуйста, подождите до {Properties.Settings.Default.BlockedUntil.ToString("HH:mm:ss")}");
+                return;
+                
+            }
+            
 
-                string query = "select login, password from Inspector where login = @login";
-
-                using (var command = new SqliteCommand(query, conect))
+                using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
                 {
-                    command.Parameters.AddWithValue("@login", "Inspector");
-                    using (SqliteDataReader reader = command.ExecuteReader())
+                    conect.Open();
+
+                    string query = "select login, password from Inspector where login = @login";
+
+                    using (var command = new SqliteCommand(query, conect))
                     {
-                        if (reader.Read())
+                        command.Parameters.AddWithValue("@login", "Inspector");
+                        using (SqliteDataReader reader = command.ExecuteReader())
                         {
-                            string username = reader["login"].ToString();
-                            string password = reader["password"].ToString();
-
-                            string LogIn = LogIN.Text;
-                            string PassWord = PassWorD.Text;
-
-
-                            if (username == LogIn &&  password == PassWord )
+                            if (reader.Read())
                             {
-                                mainmenu mainmenu = new mainmenu();
-                                mainmenu.Show();
-                                this.Close();
+                                string username = reader["login"].ToString();
+                                string password = reader["password"].ToString();
+
+                                string LogIn = LogIN.Text;
+                                string PassWord = PassWorD.Text;
+
+
+                                if (username == LogIn && password == PassWord)
+                                {
+                                    mainmenu mainmenu = new mainmenu();
+                                    mainmenu.Show();
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    _attempts++;
+                                    MessageBox.Show("Неверный логин или пароль");
+                                    if (_attempts >= 3)
+                                    {
+                                        Properties.Settings.Default.IsBlocked = true;
+                                        Properties.Settings.Default.BlockedUntil = DateTime.Now.AddMinutes(1);
+                                        _blockTimer.Start();
+                                        Properties.Settings.Default.Save();
+                                        MessageBox.Show("Вы заблокированы на минуту.");
+                                    }
+                                }
                             }
                             else
                             {
-                                attemt++;
-                                MessageBox.Show("Неверный логин или пароль");
-
+                                MessageBox.Show("Подключение к бд отсутствует");
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Подключение к бд отсутствует");
                         }
                     }
                 }
-            }
         }
 
         private void LogIN_GotFocus(object sender, RoutedEventArgs e)
