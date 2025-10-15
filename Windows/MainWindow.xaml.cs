@@ -166,9 +166,10 @@ namespace Windows
         }
         private void InactivityTimer_Tick(object sender, EventArgs e)
         {
-            this.Close(); // Закрываем текущее окно
-            MainWindow mainWindow = new MainWindow(); // Создаем новое окно авторизации
-            mainWindow.Show(); // Показываем окно авторизации
+            this.Close();
+            var loginWindow = new MainWindow(); // Предполагается, что это ваше окно авторизации
+            loginWindow.Show(); // Показываем окно авторизации
+            
         }
         private void ResetInactivityTimer(object sender, EventArgs e)
         {

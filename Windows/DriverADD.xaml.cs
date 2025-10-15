@@ -33,6 +33,7 @@ namespace Windows
         byte[] imageBytes; //Временное хранение изображения в байтах
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             string FN = FullName.Text; //ФИО
             int PN = Convert.ToInt32(PhoneNumber.Text); //Номер телефона
 
