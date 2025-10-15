@@ -22,43 +22,14 @@ namespace Windows
     {
         private int _attempts = 0;
         private DispatcherTimer _unblockTimer;
-
-        private void StartUnblockTimer()
-        {
-            _unblockTimer = new DispatcherTimer();
-            _unblockTimer.Interval = TimeSpan.FromSeconds(1); // Проверка каждую секунду
-            _unblockTimer.Tick += CheckUnblockStatus;
-            _unblockTimer.Start();
-        }
-        private void CheckUnblockStatus(object sender, EventArgs e)
-        {
-            if (DateTime.Now >= Properties.Settings.Default.BlockedUntil)
-            {
-                Properties.Settings.Default.IsBlocked = false;
-                Properties.Settings.Default.BlockedUntil = DateTime.MinValue; // Сброс времени блокировки
-                Properties.Settings.Default.Save(); // Сохранение состояния
-                _unblockTimer.Stop(); // Остановка таймера
-                MessageBox.Show("Вы разблокированы");
-            }
-        }
+        private DispatcherTimer _inactivityTimer;
 
         public MainWindow()
         {
-
             InitializeComponent();
-
-            if (Properties.Settings.Default.IsBlocked && Properties.Settings.Default.BlockedUntil > DateTime.Now)
-            {
-
-                StartUnblockTimer();
-            }
-            else
-            {
-                Properties.Settings.Default.IsBlocked = false; // Убедитесь, что состояние разблокировано
-            }
+            InitializeBlockStatus();
+            StartInactivityTimer();
         }
-        
-
 
         private void LogIn(object sender, RoutedEventArgs e)
         {
@@ -66,10 +37,8 @@ namespace Windows
             {
                 MessageBox.Show($"Вы заблокированы. Пожалуйста, подождите до {Properties.Settings.Default.BlockedUntil.ToString("HH:mm:ss")}");
                 return;
-                
-            }
-            
 
+            }
                 using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
                 {
                     conect.Open();
@@ -148,6 +117,63 @@ namespace Windows
             {
                 PassWorD.Text = string.Empty;
             }
+        }
+
+        //Реализация блокировки
+        private void StartUnblockTimer()
+        {
+            _unblockTimer = new DispatcherTimer();
+            _unblockTimer.Interval = TimeSpan.FromSeconds(1); // Проверка каждую секунду
+            _unblockTimer.Tick += CheckUnblockStatus;
+            _unblockTimer.Start();
+        }
+        private void CheckUnblockStatus(object sender, EventArgs e)
+        {
+            if (DateTime.Now >= Properties.Settings.Default.BlockedUntil)
+            {
+                Properties.Settings.Default.IsBlocked = false;
+                Properties.Settings.Default.BlockedUntil = DateTime.MinValue; // Сброс времени блокировки
+                Properties.Settings.Default.Save(); // Сохранение состояния
+                _unblockTimer.Stop(); // Остановка таймера
+                MessageBox.Show("Вы разблокированы");
+            }
+        }
+        private void InitializeBlockStatus()
+        {
+            if (Properties.Settings.Default.IsBlocked && Properties.Settings.Default.BlockedUntil > DateTime.Now)
+            {
+                StartUnblockTimer();
+            }
+            else
+            {
+                Properties.Settings.Default.IsBlocked = false; // Убедитесь, что состояние разблокировано
+            }
+        }
+
+        //Реализация таймера бездействия
+        private void StartInactivityTimer()
+        {
+            _inactivityTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMinutes(1) // 1 минута бездействия
+            };
+            _inactivityTimer.Tick += InactivityTimer_Tick;
+            _inactivityTimer.Start();
+
+            this.MouseMove += ResetInactivityTimer;
+            this.KeyDown += ResetInactivityTimer;
+            this.MouseDown += ResetInactivityTimer;
+        }
+        private void InactivityTimer_Tick(object sender, EventArgs e)
+        {
+            this.Close(); // Закрываем текущее окно
+            MainWindow mainWindow = new MainWindow(); // Создаем новое окно авторизации
+            mainWindow.Show(); // Показываем окно авторизации
+        }
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
+            _inactivityTimer.Stop();
+            _inactivityTimer.Start();
         }
     }
 }
