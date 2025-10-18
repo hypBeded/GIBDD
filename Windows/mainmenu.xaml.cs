@@ -24,10 +24,24 @@ namespace Windows
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DriverADD_Click(object sender, RoutedEventArgs e)
         {
             DriverADD driverADD = new DriverADD();
             driverADD.Show();
+            this.Close();
+        }
+
+        private void DataImport_Click(object sender, RoutedEventArgs e)
+        {
+            DataImport dataImport = new DataImport();
+            dataImport.Show();
+            this.Close();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
     }

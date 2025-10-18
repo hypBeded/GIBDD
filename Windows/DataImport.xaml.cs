@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,21 @@ namespace Windows
         public DataImport()
         {
             InitializeComponent();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            using (var conect = new SqliteConnection("Data Source=GIBDD.db"))
+            {
+                conect.Open();
+                SqliteCommand cmd = new SqliteCommand();
+                cmd.Connection = conect;
+                cmd.CommandText = "CREATE TABLE Driver_licence(" +
+                    "";
+                //cmd.CommandText = "CREATE TABLE Penalties(_id INTEGER NOT NULL PRIMARY KEY UNIQUE, postNum INTEGER NOT NULL, postDate, TEXT NOT NULL, suma INTEGER NOT NULL, koapCode TEXT NOT NULL, koapText TEXT NOT NULL, address TEXT NOT NULL, license_plate_number , paid INTEGER NOT NULL CHECK(paid IN (0,1))";
+                cmd.ExecuteNonQuery();
+
+            }
         }
     }
 }
