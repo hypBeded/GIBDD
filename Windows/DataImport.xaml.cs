@@ -186,8 +186,8 @@ namespace Windows
             // Создание нового окна для диалога распознавания
             Window dialog = new Window();
             dialog.Title = "Распознавание номера автомобиля с фотографии";
-            dialog.Width = 500;
-            dialog.Height = 400;
+            dialog.Width = 600;
+            dialog.Height = 500;
             dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             dialog.Owner = this;
 
@@ -209,21 +209,45 @@ namespace Windows
             headerText.Margin = new Thickness(0, 0, 0, 10);
             System.Windows.Controls.Grid.SetRow(headerText, 0);
 
-            // Область для отображения фотографии (эмуляция)
-            System.Windows.Controls.Border photoBorder = new System.Windows.Controls.Border();
-            photoBorder.BorderBrush = System.Windows.Media.Brushes.Gray;
-            photoBorder.BorderThickness = new Thickness(1);
-            photoBorder.Background = System.Windows.Media.Brushes.LightGray;
-            photoBorder.Margin = new Thickness(0, 0, 0, 10);
-            System.Windows.Controls.Grid.SetRow(photoBorder, 1);
+            // Область для отображения фотографии
+            System.Windows.Controls.Image photoImage = new System.Windows.Controls.Image();
+            photoImage.Margin = new Thickness(0, 0, 0, 10);
+            photoImage.Stretch = System.Windows.Media.Stretch.Uniform; // Сохранять пропорции
+            photoImage.HorizontalAlignment = HorizontalAlignment.Center;
+            photoImage.VerticalAlignment = VerticalAlignment.Center;
+            System.Windows.Controls.Grid.SetRow(photoImage, 1);
 
-            // Текст-заглушка вместо реального изображения
-            System.Windows.Controls.TextBlock photoPlaceholder = new System.Windows.Controls.TextBlock();
-            photoPlaceholder.Text = $"Область просмотра фотографии\n{photoPath}";
-            photoPlaceholder.HorizontalAlignment = HorizontalAlignment.Center;
-            photoPlaceholder.VerticalAlignment = VerticalAlignment.Center;
-            photoPlaceholder.TextAlignment = TextAlignment.Center;
-            photoBorder.Child = photoPlaceholder;
+            try
+            {
+                // Очистка префиксов photo: и image: если они есть
+                string cleanPath = photoPath;
+                if (photoPath.StartsWith("photo:"))
+                    cleanPath = photoPath.Substring(6); // Убираем "photo:"
+                else if (photoPath.StartsWith("image:"))
+                    cleanPath = photoPath.Substring(6); // Убираем "image:"
+
+                // Проверка существования файла
+                if (System.IO.File.Exists(cleanPath))
+                {
+                    // Загрузка изображения из файла
+                    var bitmap = new System.Windows.Media.Imaging.BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(cleanPath, UriKind.RelativeOrAbsolute);
+                    bitmap.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    photoImage.Source = bitmap;
+                }
+                else
+                {
+                    // Если файл не найден, показываем заглушку
+                    ShowImageNotFound(photoImage, cleanPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                // В случае ошибки загрузки изображения показываем сообщение об ошибке
+                ShowImageError(photoImage, ex.Message);
+            }
 
             // Метка для поля ввода номера
             System.Windows.Controls.TextBlock inputLabel = new System.Windows.Controls.TextBlock();
@@ -299,7 +323,7 @@ namespace Windows
 
             // Добавление всех элементов в сетку диалога
             dialogGrid.Children.Add(headerText);
-            dialogGrid.Children.Add(photoBorder);
+            dialogGrid.Children.Add(photoImage);
             dialogGrid.Children.Add(inputLabel);
             dialogGrid.Children.Add(numberTextBox);
             dialogGrid.Children.Add(buttonPanel);
@@ -310,6 +334,87 @@ namespace Windows
             bool? result = dialog.ShowDialog();
         }
 
+        // Метод для отображения сообщения "Файл не найден"
+        private void ShowImageNotFound(System.Windows.Controls.Image imageControl, string filePath)
+        {
+            var border = new System.Windows.Controls.Border();
+            border.BorderBrush = System.Windows.Media.Brushes.Red;
+            border.BorderThickness = new Thickness(2);
+            border.Background = System.Windows.Media.Brushes.LightYellow;
+            border.Margin = new Thickness(0, 0, 0, 10);
+
+            var stackPanel = new System.Windows.Controls.StackPanel();
+            stackPanel.Orientation = System.Windows.Controls.Orientation.Vertical;
+            stackPanel.HorizontalAlignment = HorizontalAlignment.Center;
+            stackPanel.VerticalAlignment = VerticalAlignment.Center;
+            stackPanel.Margin = new Thickness(10);
+
+            var warningIcon = new System.Windows.Controls.TextBlock();
+            warningIcon.Text = "⚠️";
+            warningIcon.FontSize = 24;
+            warningIcon.HorizontalAlignment = HorizontalAlignment.Center;
+
+            var messageText = new System.Windows.Controls.TextBlock();
+            messageText.Text = $"Файл не найден:\n{filePath}";
+            messageText.TextWrapping = TextWrapping.Wrap;
+            messageText.TextAlignment = TextAlignment.Center;
+            messageText.FontWeight = FontWeights.Bold;
+
+            stackPanel.Children.Add(warningIcon);
+            stackPanel.Children.Add(messageText);
+            border.Child = stackPanel;
+
+            // Заменяем Image на Border с сообщением об ошибке
+            var parent = imageControl.Parent as System.Windows.Controls.Grid;
+            if (parent != null)
+            {
+                int row = System.Windows.Controls.Grid.GetRow(imageControl);
+                parent.Children.Remove(imageControl);
+                System.Windows.Controls.Grid.SetRow(border, row);
+                parent.Children.Add(border);
+            }
+        }
+
+        // Метод для отображения сообщения об ошибке загрузки
+        private void ShowImageError(System.Windows.Controls.Image imageControl, string errorMessage)
+        {
+            var border = new System.Windows.Controls.Border();
+            border.BorderBrush = System.Windows.Media.Brushes.Red;
+            border.BorderThickness = new Thickness(2);
+            border.Background = System.Windows.Media.Brushes.LightPink;
+            border.Margin = new Thickness(0, 0, 0, 10);
+
+            var stackPanel = new System.Windows.Controls.StackPanel();
+            stackPanel.Orientation = System.Windows.Controls.Orientation.Vertical;
+            stackPanel.HorizontalAlignment = HorizontalAlignment.Center;
+            stackPanel.VerticalAlignment = VerticalAlignment.Center;
+            stackPanel.Margin = new Thickness(10);
+
+            var errorIcon = new System.Windows.Controls.TextBlock();
+            errorIcon.Text = "❌";
+            errorIcon.FontSize = 24;
+            errorIcon.HorizontalAlignment = HorizontalAlignment.Center;
+
+            var messageText = new System.Windows.Controls.TextBlock();
+            messageText.Text = $"Ошибка загрузки:\n{errorMessage}";
+            messageText.TextWrapping = TextWrapping.Wrap;
+            messageText.TextAlignment = TextAlignment.Center;
+            messageText.FontWeight = FontWeights.Bold;
+
+            stackPanel.Children.Add(errorIcon);
+            stackPanel.Children.Add(messageText);
+            border.Child = stackPanel;
+
+            // Заменяем Image на Border с сообщением об ошибке
+            var parent = imageControl.Parent as System.Windows.Controls.Grid;
+            if (parent != null)
+            {
+                int row = System.Windows.Controls.Grid.GetRow(imageControl);
+                parent.Children.Remove(imageControl);
+                System.Windows.Controls.Grid.SetRow(border, row);
+                parent.Children.Add(border);
+            }
+        }
         // Метод вставки данных о штрафе в базу данных
         private void InsertFineToDatabase(string postNum, string postDate, int sum, int koapCode,
                                         string koapText, string address, string dataCar, int dataDriver)
