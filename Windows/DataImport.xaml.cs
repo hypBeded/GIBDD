@@ -110,6 +110,7 @@ namespace Windows
             string address = GetStringProperty(fineElement, "Address");          // Адрес нарушения
             string dataCar = GetStringProperty(fineElement, "DataCar");          // Данные авто
             int dataDriver = GetIntProperty(fineElement, "DataDriver");          // Данные водителя
+            string status = GetStringProperty(fineElement, "Status");            // Статус оплаты
 
             // Проверка наличия обязательных полей
             if (string.IsNullOrEmpty(postDate) || sum == 0 || koapCode == 0 || string.IsNullOrEmpty(koapText))
@@ -123,12 +124,12 @@ namespace Windows
             if (isPhoto)
             {
                 // Если это фото - открываем диалог для ручного распознавания номера
-                ShowRecognitionDialog(postNum, postDate, sum, koapCode, koapText, address, dataCar, dataDriver);
+                ShowRecognitionDialog(postNum, postDate, sum, koapCode, koapText, address, dataCar, dataDriver, status);
             }
             else
             {
                 // Если это обычный номер - сразу добавляем в базу данных
-                InsertFineToDatabase(postNum, postDate, sum, koapCode, koapText, address, dataCar, dataDriver);
+                InsertFineToDatabase(postNum, postDate, sum, koapCode, koapText, address, dataCar, dataDriver, status);
             }
         }
 
@@ -181,7 +182,7 @@ namespace Windows
 
         // Метод отображения диалога распознавания номера с фотографии
         private void ShowRecognitionDialog(string photoPath, string postDate, int sum, int koapCode,
-                                         string koapText, string address, string dataCar, int dataDriver)
+                                         string koapText, string address, string dataCar, int dataDriver, string status)
         {
             // Создание нового окна для диалога распознавания
             Window dialog = new Window();
@@ -285,7 +286,7 @@ namespace Windows
                 }
 
                 // Сохранение записи с распознанным номером
-                InsertFineToDatabase(recognizedNumber, postDate, sum, koapCode, koapText, address, dataCar, dataDriver);
+                InsertFineToDatabase(recognizedNumber, postDate, sum, koapCode, koapText, address, dataCar, dataDriver, status);
                 dialog.DialogResult = true;
             };
 
@@ -298,7 +299,7 @@ namespace Windows
             manualReviewButton.Click += (s, e) =>
             {
                 // Сохранение записи с NULL вместо номера
-                InsertFineToDatabase(null, postDate, sum, koapCode, koapText, address, dataCar, dataDriver);
+                InsertFineToDatabase(null, postDate, sum, koapCode, koapText, address, dataCar, dataDriver, status);
 
                 // Отправка на дополнительное рассмотрение
                 SendForManualReview(photoPath, postDate, sum, koapCode, koapText);
@@ -417,7 +418,7 @@ namespace Windows
         }
         // Метод вставки данных о штрафе в базу данных
         private void InsertFineToDatabase(string postNum, string postDate, int sum, int koapCode,
-                                        string koapText, string address, string dataCar, int dataDriver)
+                                        string koapText, string address, string dataCar, int dataDriver, string status)
         {
             // Использование подключения к базе данных
             using (var connect = new SqliteConnection("Data Source=GIBDD.db"))
@@ -426,8 +427,8 @@ namespace Windows
 
                 // SQL запрос для вставки данных
                 string insertSql = @"
-                INSERT INTO Fines (PostNum, PostDate, Sum, KoapCode, KoapText, Address, DataCar, DataDriver)
-                VALUES (@PostNum, @PostDate, @Sum, @KoapCode, @KoapText, @Address, @DataCar, @DataDriver)";
+                INSERT INTO Fines (PostNum, PostDate, Sum, KoapCode, KoapText, Address, DataCar, DataDriver, Status)
+                VALUES (@PostNum, @PostDate, @Sum, @KoapCode, @KoapText, @Address, @DataCar, @DataDriver, @Status)";
 
                 // Создание и настройка команды SQL
                 using (var command = new SqliteCommand(insertSql, connect))
@@ -450,6 +451,7 @@ namespace Windows
                     command.Parameters.AddWithValue("@Address", address ?? "");
                     command.Parameters.AddWithValue("@DataCar", dataCar ?? "");
                     command.Parameters.AddWithValue("@DataDriver", dataDriver);
+                    command.Parameters.AddWithValue("@Status", status);
 
                     // Выполнение команды вставки
                     command.ExecuteNonQuery();
