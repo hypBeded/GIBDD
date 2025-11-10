@@ -15,5 +15,6 @@
         <Label Content="Логин" Margin="165,128,534,268" FontSize="16" Grid.Column="1"/>
         <Label Content="Пароль" Margin="165,193,534,205" FontSize="16" Grid.Column="1" />
 
+
     </Grid>
 </Window>

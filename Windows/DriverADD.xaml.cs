@@ -40,6 +40,8 @@ namespace Windows
             //Паспортные данные-----------------------------------------------------------
             string Pi = $"{PasportInfo.Text}{PasportInfo1.Text} "; //Объединение паспортных данных в одну сплошную строку
             int PI = Convert.ToInt32(Pi);
+            string Li = $"{Lincence_series.Text}{Licence_number.Text} "; //Объединение паспортных данных в одну сплошную строку
+            int LI = Convert.ToInt32(Li);
 
             if (!ValidateEmail(Email.Text)) //Валидация почты
             {
@@ -67,9 +69,9 @@ namespace Windows
                 {
                     conect.Open();
                     var command = conect.CreateCommand();
-                    command.CommandText = "Insert INTO Drivers" + 
-                        "(Full_Name, Pasporta_data,Phone_number,Email,Remark,Adres_regitr,Adres_residinatial,Workplace,Post,Photo) " +
-                        "values  (@Full_Name,@Pasporta_data,@Phone_number,@Email,@Remark,@Adres_regitr,@Adres_residinatial,@Workplace,@Post,@Photo)";
+                    command.CommandText = "Insert INTO Drivers" +
+                        "(Full_Name, Pasporta_data,Phone_number,Email,Remark,Adres_regitr,Adres_residinatial,Workplace,Post,Photo,DataLicence) " +
+                        "values  (@Full_Name,@Pasporta_data,@Phone_number,@Email,@Remark,@Adres_regitr,@Adres_residinatial,@Workplace,@Post,@Photo,@DataLicence)";
 
                     command.Parameters.AddWithValue("@Full_Name", FN);
                     command.Parameters.AddWithValue("@Pasporta_data", PI);
@@ -81,6 +83,7 @@ namespace Windows
                     command.Parameters.AddWithValue("@Workplace", POW);
                     command.Parameters.AddWithValue("@Post", post);
                     command.Parameters.AddWithValue("@Photo", image);
+                    command.Parameters.AddWithValue("@DataLicence", LI);
 
                     command.ExecuteNonQuery();
                     MessageBox.Show("Запись добавлена");
@@ -99,6 +102,8 @@ namespace Windows
             Zamechanie.Text = string.Empty; // замечание
             PlaceOfWork.Text = string.Empty; ; //Место работы
             Post.Text = string.Empty; ; //Должность
+            Licence_number.Text = string.Empty;
+            Lincence_series.Text = string.Empty;
                                         //Города-------------------------------------------------------                            
             City1.Text = string.Empty;
             City2.Text = string.Empty;

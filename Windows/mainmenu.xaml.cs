@@ -45,9 +45,5 @@ namespace Windows
             this.Close();
         }
 
-        private void Export_file_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

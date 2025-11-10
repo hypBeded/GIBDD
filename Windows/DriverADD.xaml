@@ -118,11 +118,11 @@
             </TextBox.RenderTransform>
         </TextBox>
         <Label Content="Регистрация водителя" Margin="282,10,282,373" FontSize="22"/>
-        <Label Content="ФИО" Margin="129,70,0,325" HorizontalAlignment="Left"/>
+        <Label Content="ФИО" Margin="129,70,0,345" HorizontalAlignment="Left"/>
         <Label Content="Паспортные данные" Margin="61,120,0,300" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Мобильный телефон" Margin="58,171,0,252" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Email" Margin="145,222,0,199" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
-        <Label Content="Замечания" Margin="113,265,0,130" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
+        <Label Content="Замечания" Margin="113,265,0,155" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989"/>
         <Label Content="Адрес &#xD;&#xA;регистрации" Margin="418,62,266,325"/>
         <Label Content="Адрес &#xD;&#xA;проживания" Margin="418,109,247,295"/>
         <TextBox x:Name="PlaceOfWork" TextWrapping="Wrap" Margin="506,165,82,250" RenderTransformOrigin="0.5,0.5">
@@ -160,6 +160,27 @@
         <TextBox x:Name="Adress2" TextWrapping="Wrap" Margin="641,110,82,302"/>
         <Label Content="Точный&#xA;адрес" Margin="724,110,0,290" FontSize="10"/>
         <TextBox x:Name="PasportInfo1"  TextWrapping="Wrap" Margin="301,121,395,294" RenderTransformOrigin="0.5,0.5" PreviewTextInput="PasportInfo1_PreviewTextInput" >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.109"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.095"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox x:Name="Lincence_series"  TextWrapping="Wrap" Margin="194,316,519,100" RenderTransformOrigin="0.5,0.5" PreviewTextInput="PasportInfo_PreviewTextInput"   >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.109"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.095"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label Content="Водительское удостоверение" Margin="10,314,0,106" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1.989" Width="174"/>
+        <TextBox x:Name="Licence_number"  TextWrapping="Wrap" Margin="301,316,395,100" RenderTransformOrigin="0.5,0.5" PreviewTextInput="PasportInfo1_PreviewTextInput" >
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
